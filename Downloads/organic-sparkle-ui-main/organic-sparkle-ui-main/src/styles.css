@@ -1,0 +1,133 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 14px);
+  --radius-4xl: calc(var(--radius) + 22px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-cream: var(--cream);
+  --color-bark: var(--bark);
+  --color-leaf: var(--leaf);
+  --color-moss: var(--moss);
+  --color-sand: var(--sand);
+
+  --font-display: "Playfair Display", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-button: "Poppins", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Brand */
+  --primary: oklch(0.42 0.085 115);          /* #5B5D00 olive */
+  --primary-foreground: oklch(0.98 0.01 95);
+  --leaf: oklch(0.5 0.11 118);                /* #788000 */
+  --moss: oklch(0.66 0.13 120);               /* #A3A83A */
+  --sand: oklch(0.78 0.08 65);                /* #D4A373 accent */
+  --cream: oklch(0.985 0.012 95);             /* #F8F8F2 */
+  --bark: oklch(0.22 0.012 60);               /* #1F1F1F */
+
+  --background: oklch(0.985 0.012 95);
+  --foreground: oklch(0.22 0.012 60);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.012 60);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.012 60);
+  --secondary: oklch(0.94 0.02 95);
+  --secondary-foreground: oklch(0.3 0.04 110);
+  --muted: oklch(0.95 0.012 95);
+  --muted-foreground: oklch(0.48 0.018 80);
+  --accent: oklch(0.78 0.08 65);
+  --accent-foreground: oklch(0.22 0.012 60);
+  --destructive: oklch(0.58 0.21 27);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.9 0.015 90);
+  --input: oklch(0.9 0.015 90);
+  --ring: oklch(0.42 0.085 115);
+
+  --gradient-hero: radial-gradient(120% 80% at 80% 0%, color-mix(in oklab, var(--moss) 22%, transparent), transparent 60%),
+                   radial-gradient(80% 60% at 0% 100%, color-mix(in oklab, var(--sand) 25%, transparent), transparent 60%),
+                   linear-gradient(180deg, var(--cream), color-mix(in oklab, var(--cream) 70%, white));
+  --gradient-primary: linear-gradient(135deg, var(--primary), var(--leaf));
+  --shadow-soft: 0 1px 2px color-mix(in oklab, var(--bark) 6%, transparent), 0 12px 40px -16px color-mix(in oklab, var(--primary) 28%, transparent);
+  --shadow-glow: 0 20px 60px -20px color-mix(in oklab, var(--primary) 45%, transparent);
+}
+
+.dark {
+  --background: oklch(0.18 0.012 95);
+  --foreground: oklch(0.96 0.012 95);
+  --card: oklch(0.22 0.014 95);
+  --card-foreground: oklch(0.96 0.012 95);
+  --popover: oklch(0.22 0.014 95);
+  --popover-foreground: oklch(0.96 0.012 95);
+  --primary: oklch(0.78 0.13 118);
+  --primary-foreground: oklch(0.18 0.012 95);
+  --secondary: oklch(0.28 0.02 95);
+  --secondary-foreground: oklch(0.96 0.012 95);
+  --muted: oklch(0.26 0.018 95);
+  --muted-foreground: oklch(0.72 0.018 90);
+  --accent: oklch(0.78 0.08 65);
+  --accent-foreground: oklch(0.18 0.012 95);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.78 0.13 118);
+  --cream: oklch(0.22 0.014 95);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { font-family: var(--font-sans); }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+  button, .font-button { font-family: var(--font-button); }
+}
+
+@utility grain-bg {
+  background-image:
+    radial-gradient(circle at 25% 30%, color-mix(in oklab, var(--moss) 8%, transparent) 0 1px, transparent 1px),
+    radial-gradient(circle at 75% 70%, color-mix(in oklab, var(--sand) 10%, transparent) 0 1px, transparent 1px);
+  background-size: 22px 22px, 26px 26px;
+}
+
+@utility glass-card {
+  background: color-mix(in oklab, var(--card) 70%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid color-mix(in oklab, var(--primary) 12%, transparent);
+}
+
+@utility leaf-divider {
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--primary) 30%, transparent), transparent);
+  height: 1px;
+}
